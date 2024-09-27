@@ -11,10 +11,8 @@ class DlgMain(QDialog):
         self.btn.clicked.connect(self.evt_btn_clicked)
 
     def evt_btn_clicked(self):
-        colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
-        color, b_ok = QInputDialog.getItem(self, "Colors", "Enter your favorite color:", colors)
-        if b_ok:
-            QMessageBox.information(self, "Color", color)
+        res = QFileDialog.getOpenFileName(self, 'Open file', '/Users', 'JPG File (*jpg);;PNG File (*.png)')
+        print(res)
 
 
 if __name__ == '__main__':
