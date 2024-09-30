@@ -1,20 +1,28 @@
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+
 
 class DlgMain(QDialog):
     def __init__(self):
         super().__init__()
         self.resize(200, 200)
 
-        self.btn = QPushButton("Open file", self)
+        self.btn = QPushButton("Choose Font", self)
         self.btn.move(35, 50)
+        font = QFont('Arial', 17, 75, True)
+        self.btn.setFont(font)
         self.btn.clicked.connect(self.evt_btn_clicked)
 
     def evt_btn_clicked(self):
-        colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
-        color, b_ok = QInputDialog.getItem(self, "Colors", "Enter your favorite color:", colors)
+        font, b_ok = QFontDialog.getFont()
         if b_ok:
-            QMessageBox.information(self, "Color", color)
+            print(font.family())
+            print(font.italic())
+            print(font.bold())
+            print(font.weight())
+            print(font.pointSize())
+            self.btn.setFont(font)
 
 
 if __name__ == '__main__':
@@ -22,3 +30,4 @@ if __name__ == '__main__':
     dlgMain = DlgMain()
     dlgMain.show()
     sys.exit(app.exec_())
+    
